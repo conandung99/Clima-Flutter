@@ -1,5 +1,3 @@
-import 'dart:io';
-
 void main() {
   performJob();
 }
@@ -15,11 +13,17 @@ void task1() {
   print('task1 completed!');
 }
 
-void task2() {
-  String result = 'task2 data';
+Future<String> task2() async {
+  String result;
   Duration threeSec = Duration(seconds: 3);
-  sleep(threeSec);
-  print('task2 completed!');
+  // sleep(threeSec); // synchronous
+
+  Future.delayed(threeSec, () {
+    result = 'task2 data';
+    print('task2 completed!');
+  });
+
+  return result;
 }
 
 void task3() {
