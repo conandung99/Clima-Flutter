@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -10,9 +11,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
+        child: ElevatedButton(
+          onPressed: () async {
             //Get the current location
+            Position position = await Geolocator.getCurrentPosition(
+                desiredAccuracy: LocationAccuracy.low);
+            print(position);
           },
           child: Text('Get Location'),
         ),
